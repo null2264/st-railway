@@ -9,3 +9,5 @@ RUN \
   ln -sf /home/node/app/persist/data /home/node/app/data && \
   mv /home/node/app/plugins /home/node/app/persist/plugins || mkdir /home/node/app/persist/plugins && \
   ln -sf /home/node/app/persist/plugins /home/node/app/plugins
+
+RUN ls -l /home/node/app
