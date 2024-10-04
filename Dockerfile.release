@@ -2,16 +2,16 @@ FROM ghcr.io/sillytavern/sillytavern:1.12.6
 
 # So we only need to bind a single folder to a storage
 RUN \
-  mkdir /home/node/app/persist && \
-  mv /home/node/app/config /home/node/app/persist/config || mkdir /home/node/app/persist/config && \
-  ln -sf /home/node/app/persist/config /home/node/app/config && \
-  mv /home/node/app/data /home/node/app/persist/data || mkdir /home/node/app/persist/data && \
-  ln -sf /home/node/app/persist/data /home/node/app/data && \
-  mv /home/node/app/plugins /home/node/app/persist/plugins || mkdir /home/node/app/persist/plugins && \
-  ln -sf /home/node/app/persist/plugins /home/node/app/plugins
+  mkdir ./persist && \
+  mv ./config ./persist/config || mkdir ./persist/config && \
+  ln -sf ./persist/config ./config && \
+  mv ./data ./persist/data || mkdir ./persist/data && \
+  ln -sf ./persist/data ./data && \
+  mv ./plugins ./persist/plugins || mkdir ./persist/plugins && \
+  ln -sf ./persist/plugins ./plugins
 
 # Copy default chats, characters and user avatars to <folder>.default folder
 RUN \
   rm -f "config.yaml" || true && \
-  ln -sf "/home/node/app/persist/config/config.yaml" "config.yaml" || true && \
-  [ ! -e "/home/node/app/persist/config/config.yaml" ] && cp -r "default/config.yaml" "/home/node/app/persist/config/config.yaml"
+  ln -sf "./persist/config/config.yaml" "config.yaml" || true && \
+  [ ! -e "./persist/config/config.yaml" ] && cp -r "default/config.yaml" "./persist/config/config.yaml"
