@@ -1,5 +1,7 @@
 FROM ghcr.io/sillytavern/sillytavern:1.12.6
 
+RUN ls -l
+
 # So we only need to bind a single folder to a storage
 RUN \
   mkdir ./persist && \
