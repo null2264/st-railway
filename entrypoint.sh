@@ -10,12 +10,17 @@ if [ ! -e "./persist/config/config.yaml" ]; then
     cat ./default/config.yaml |\
         sed 's/^listen: false/listen: true/g' |\
         sed 's/^whitelistMode: true/whitelistMode: false/g' |\
-        sed 's/^basicAuthMode: false/basicAuthMode: true/g' |\
         sed 's/^enableUserAccounts: false/enableUserAccounts: true/g' |\
         sed 's/^enableDiscreetLogin: false/enableDiscreetLogin: true/g' |\
         sed 's/^securityOverride: false/securityOverride: true/g' \
             > ./persist/config/config.yaml
 fi
+
+# >> migrations
+mv ./persist/config/config.yaml ./persist/config/_config.yaml
+cat ./persist/config/_config.yaml | sed 's/^basicAuthMode: true/basicAuthMode: false/g' > ./persist/config/config.yaml
+rm ./persist/config/_config.yaml
+# << migrations
 
 # Start the server
 exec node server.js --listen
