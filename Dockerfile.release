@@ -1,7 +1,5 @@
 FROM ghcr.io/sillytavern/sillytavern:1.12.6
 
-RUN ls -l
-
 # So we only need to bind a single folder to a storage
 RUN \
   mkdir ./persist && \
@@ -11,6 +9,8 @@ RUN \
   ln -sf ./persist/data ./data && \
   mv ./plugins ./persist/plugins || mkdir ./persist/plugins && \
   ln -sf ./persist/plugins ./plugins
+
+RUN ls -l ./persist
 
 COPY entrypoint.sh ./
 
