@@ -39,7 +39,7 @@ jobs:
         id: extract_version
         run: |
           __version="${{ matrix.dockerfile }}"
-          echo "version=${echo $__version | sed 's/^Dockerfile\.//g'}" >> $GITHUB_OUTPUT
+          echo "version=$(echo $__version | sed 's/^Dockerfile\.//g')" >> $GITHUB_OUTPUT
         shell: bash
 
       - name: Build and Publish
