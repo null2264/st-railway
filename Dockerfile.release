@@ -2,9 +2,10 @@ FROM ghcr.io/sillytavern/sillytavern:1.12.6
 
 # So we only need to bind a single folder to a storage
 RUN \
-  mv /home/node/app/config /home/node/app/persist/config && \
+  mkdir /home/node/app/persist && \
+  mv /home/node/app/config /home/node/app/persist/config || mkdir /home/node/app/persist/config && \
   ln -sf /home/node/app/persist/config /home/node/app/config && \
-  mv /home/node/app/data /home/node/app/persist/data && \
+  mv /home/node/app/data /home/node/app/persist/data || mkdir /home/node/app/persist/data && \
   ln -sf /home/node/app/persist/data /home/node/app/data && \
-  mv /home/node/app/plugins /home/node/app/persist/plugins && \
+  mv /home/node/app/plugins /home/node/app/persist/plugins || mkdir /home/node/app/persist/plugins && \
   ln -sf /home/node/app/persist/plugins /home/node/app/plugins
