@@ -1,16 +1,16 @@
 FROM ghcr.io/sillytavern/sillytavern:1.12.6
 
-# So we only need to bind a single folder to a storage
-RUN \
-  mkdir ./persist && \
-  mv ./config ./persist/config || mkdir ./persist/config && \
-  ln -sf ./persist/config ./config && \
-  mv ./data ./persist/data || mkdir ./persist/data && \
-  ln -sf ./persist/data ./data && \
-  mv ./plugins ./persist/plugins || mkdir ./persist/plugins && \
-  ln -sf ./persist/plugins ./plugins
+# So that we only need one volume
+RUN mkdir ./persist
 
-RUN ls -l ./persist
+# Move all the necessary directories for later
+RUN \
+  mv ./config ./_config || true && \
+  mv ./data ./_data || true && \
+  mv ./plugins ./_plugins || true && \
+  ln -sf ./persist/config ./config && \
+  ln -sf ./persist/data ./data && \
+  ln -sf ./persist/plugins ./plugins
 
 COPY entrypoint.sh ./
 
