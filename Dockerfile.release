@@ -5,9 +5,9 @@ RUN mkdir ./persist
 
 # Move all the necessary directories for later
 RUN \
-  mv ./config ./_config || true && \
-  mv ./data ./_data || true && \
-  mv ./plugins ./_plugins || true && \
+  mv ./config ./_config || mkdir ./_config && \
+  mv ./data ./_data || mkdir ./_data && \
+  mv ./plugins ./_plugins || mkdir ./_plugins && \
   ln -sf ./persist/config ./config && \
   ln -sf ./persist/data ./data && \
   ln -sf ./persist/plugins ./plugins
