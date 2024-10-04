@@ -10,4 +10,8 @@ RUN \
   mv /home/node/app/plugins /home/node/app/persist/plugins || mkdir /home/node/app/persist/plugins && \
   ln -sf /home/node/app/persist/plugins /home/node/app/plugins
 
-RUN ls -l /home/node/app
+# Copy default chats, characters and user avatars to <folder>.default folder
+RUN \
+  rm -f "config.yaml" || true && \
+  ln -sf "/home/node/app/persist/config/config.yaml" "config.yaml" || true && \
+  [ ! -e "/home/node/app/persist/config/config.yaml" ] && cp -r "default/config.yaml" "/home/node/app/persist/config/config.yaml"
