@@ -1,4 +1,4 @@
-FROM ghcr.io/sillytavern/sillytavern:1.12.6
+FROM ghcr.io/sillytavern/sillytavern:1.12.11
 
 # So that we only need one volume
 RUN mkdir ./persist
