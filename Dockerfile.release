@@ -3,6 +3,8 @@ FROM ghcr.io/sillytavern/sillytavern:1.12.11
 # So that we only need one volume
 RUN mkdir ./persist
 
+RUN sed 's/OPENROUTER_PROVIDERS = \[/OPENROUTER_PROVIDERS = \[\n    "Chutes",/' ./public/scripts/textgen-models.js
+
 # Move all the necessary directories for later
 RUN \
   mv ./config ./_config || mkdir ./_config && \
