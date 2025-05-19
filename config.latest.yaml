@@ -9,6 +9,7 @@ whitelistImportDomains:
 
 # Expose ST so Railway can forward it to a domain
 listen: true
+port: ${PORT}
 # We'll be using multi-user instead
 whitelistMode: false
 # Enable multi-user
