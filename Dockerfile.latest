@@ -7,6 +7,11 @@ RUN apk update && apk add gettext
 # Volume should target '/home/node/app/persist'
 RUN mkdir ./persist
 
+# ST already created these directories, causing issues when trying to create symlink
+RUN mv ./config ./_config || mkdir ./_config && \
+	mv ./data ./_data || mkdir ./_data && \
+	mv ./plugins ./_plugins || mkdir ./_plugins
+
 # Move data directories to persist dir
 RUN ln -sf ./persist/config ./config && \
 	ln -sf ./persist/data ./data && \

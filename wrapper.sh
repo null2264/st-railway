@@ -1,8 +1,9 @@
 #!/bin/sh
 
-[ ! -d "./persist/config" ] && mkdir ./persist/config
-[ ! -d "./persist/data" ] && mkdir ./persist/data
-[ ! -d "./persist/plugins" ] && mkdir ./persist/plugins
+# Move default directories to persist dir
+[ ! -d "./persist/config" ] && mv ./_config ./persist/config
+[ ! -d "./persist/data" ] && mv ./_data ./persist/data
+[ ! -d "./persist/plugins" ] && mv ./_plugins ./persist/plugins
 
 export SILLYTAVERN_DISCREET_LOGIN=${SILLYTAVERN_DISCREET_LOGIN:-false}
 
@@ -11,8 +12,5 @@ envsubst < ./config.template.yaml > ./persist/config/config.yaml
 #     echo "Config not found, copying from template"
 #     envsubst < ./config.template.yaml > ./persist/config/config.yaml
 # fi
-
-ls -lla
-cat ./config/config/yaml
 
 tini -- ./docker-entrypoint.sh
