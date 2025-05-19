@@ -14,4 +14,4 @@ COPY config.latest.yaml ./config.template.yaml
 
 RUN chmod +x ./wrapper.sh
 
-ENTRYPOINT ["wrapper.sh"]
+ENTRYPOINT ["./wrapper.sh"]
