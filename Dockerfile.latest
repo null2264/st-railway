@@ -1,5 +1,8 @@
 FROM ghcr.io/sillytavern/sillytavern:latest
 
+# For 'envsubst'
+RUN apk update && apk add gettext
+
 # Iirc you can only attach one volume to each services in Railway
 # Volume should target '/home/node/app/persist'
 RUN mkdir ./persist
