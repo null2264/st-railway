@@ -12,4 +12,7 @@ envsubst < ./config.template.yaml > ./persist/config/config.yaml
 #     envsubst < ./config.template.yaml > ./persist/config/config.yaml
 # fi
 
+ls -lla
+cat ./config/config/yaml
+
 tini -- ./docker-entrypoint.sh
