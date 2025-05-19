@@ -1,0 +1,17 @@
+FROM ghcr.io/sillytavern/sillytavern:latest
+
+# Iirc you can only attach one volume to each services in Railway
+# Volume should target '/home/node/app/persist'
+RUN mkdir ./persist
+
+# Move data directories to persist dir
+RUN ln -sf ./persist/config ./config && \
+	ln -sf ./persist/data ./data && \
+	ln -sf ./persist/plugins ./plugins
+
+COPY wrapper.sh ./
+COPY config.latest.yaml ./config.template.yaml
+
+RUN chmod +x ./wrapper.sh
+
+ENTRYPOINT ["wrapper.sh"]

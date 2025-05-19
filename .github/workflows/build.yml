@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        dockerfile: ['Dockerfile.release']
+        dockerfile: ['Dockerfile.latest']
 
     steps:
       - name: Checkout sources
