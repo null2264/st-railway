@@ -29,6 +29,3 @@ logging:
   enableAccessLog: true
   # Minimum log level to display (DEBUG = 0, INFO = 1, WARN = 2, ERROR = 3)
   minLogLevel: ${SILLYTAVERN_LOG_LEVEL}
-
-gemini:
-  apiVersion: '${SILLYTAVERN_GEMINI_API_VERSION}'
