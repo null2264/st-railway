@@ -32,7 +32,3 @@ logging:
 
 gemini:
   apiVersion: '${SILLYTAVERN_GEMINI_API_VERSION}'
-
-browserLaunch:
-  # We're running this headless, so no need for this
-  enabled: false
