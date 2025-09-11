@@ -44,7 +44,10 @@ jobs:
         id: extract_version
         run: |
           __version="${{ matrix.dockerfile }}"
-          echo "version=$(echo $__version | sed 's/^Dockerfile\.//g')" >> $GITHUB_OUTPUT
+          version="$(echo $__version | sed 's/^Dockerfile\.//g')"
+          echo "version=$version" >> $GITHUB_OUTPUT
+          mv --no-clobber config.latest.yaml config.$version.yaml
+          cat Dockerfile.template | sed "s/%VERSION%/$version/g" > $__version
         shell: bash
 
       - name: Build and Publish
