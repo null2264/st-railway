@@ -36,3 +36,18 @@ gemini:
 browserLaunch:
   # We're running this headless, so no need for this
   enabled: false
+
+##region v1.13.4
+# TODO: Probably useful?
+hostWhitelist:
+  # Enable or disable host whitelisting
+  enabled: false
+  # Scan incoming requests for potential host header spoofing
+  scan: true
+  # List of allowed hosts. Do not include localhost or IPs, these are safe.
+  # Use a dot to create subdomain patterns.
+  # Examples:
+  # - example.com
+  # - .trycloudflare.com
+  hosts: []
+##endregion
