@@ -4,6 +4,23 @@ on:
   push:
 
 jobs:
+  setup:
+    name: Setup
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Setup matrix
+        id: matrix
+        run: echo "matrix=$(uv run main.py)" >> $GITHUB_OUTPUT
+
   build:
     runs-on: ubuntu-latest
     permissions:
@@ -12,14 +29,7 @@ jobs:
       id-token: write
 
     strategy:
-      matrix:
-        dockerfile:
-          - 'Dockerfile.latest'
-          - 'Dockerfile.1.13.4'
-          - 'Dockerfile.1.13.3'
-          - 'Dockerfile.1.13.2'
-          - 'Dockerfile.1.13.1'
-          - 'Dockerfile.1.13.0'
+      matrix: ${{ fromJson(needs.setup.outputs.matrix) }}
 
     steps:
       - name: Checkout sources
@@ -44,8 +54,8 @@ jobs:
       - name: Extract version from Dockerfile name and setup Dockerfile
         id: extract_version
         run: |
-          __version="${{ matrix.dockerfile }}"
-          version="$(echo $__version | sed 's/^Dockerfile\.//g')"
+          __version="Dockerfile.${{ matrix.version }}"
+          version="${{ matrix.version }}"
           echo "version=$version" >> $GITHUB_OUTPUT
           mv --no-clobber config.latest.yaml "config.$version.yaml" || true
           cat Dockerfile.template | sed "s/%VERSION%/$version/g" > "$__version"

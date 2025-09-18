@@ -1,0 +1,10 @@
+[project]
+name = "st-railway"
+version = "0.0.1"
+description = "SillyTavern on Railway"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "requests>=2.32.5",
+    "semver>=3.0.4",
+]
