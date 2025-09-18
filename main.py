@@ -10,8 +10,8 @@ def main():
         headers["Authorization"] = token
 
     r = requests.get("https://api.github.com/repos/SillyTavern/SillyTavern/releases", headers=headers).json()[:5]
-    versions = [{ "version": i["tag_name"] } for i in r if i.get("tag_name")]
-    versions.insert(0, { "version": "latest" })
+    versions = [{ "version": i["tag_name"], "dockerfile": f"Dockerfile.{i["tag_name"]}" } for i in r if i.get("tag_name")]
+    versions.insert(0, { "version": "latest", "dockerfile": "Dockerfile.latest" })
     rt = { "includes": versions }
     print(rt)
 
