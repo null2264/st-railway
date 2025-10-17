@@ -51,3 +51,25 @@ hostWhitelist:
   # - .trycloudflare.com
   hosts: []
 ##endregion
+
+##region v1.13.5
+# TODO: Probably not possible in Railway?
+# -- SSO LOGIN CONFIGURATION --
+sso:
+  # Enable's authlia based auto login. Only enable this if you
+  # have setup and installed Authelia as a middle-ware on your
+  # reverse proxy
+  # https://www.authelia.com/
+  # This will use auto login to an account with the same username
+  # as that used for authlia. (Ensure the username in authlia
+  # is an exact match in lowercase with that in sillytavern)
+  autheliaAuth: false
+  # Enable's authentik based auto login. Only enable this if you
+  # have setup and installed Authentik as a middle-ware on your
+  # reverse proxy.
+  # https://goauthentik.io/
+  # This will use auto login to an account with the same username
+  # as that used for authentik. (Ensure the username in authentik
+  # is an exact match in lowercase with that in sillytavern).
+  authentikAuth: false
+##endregion
