@@ -105,6 +105,11 @@ cors:
   maxAge: null
 ##endregion
 
+##region v1.19.0
+# Disabled by default to restore Node 18 behaviour.
+enableKeepAlive: false
+##endregion
+
 # PERFORMANCE-RELATED CONFIGURATION
 performance:
   # Enables lazy loading of character cards. Improves performances with large card libraries.
